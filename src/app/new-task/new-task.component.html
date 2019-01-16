@@ -1,0 +1,20 @@
+<p>
+</p>
+<div class="container">
+  <div class="col-md-6">
+    <div class="card card-primary">
+      <div class="card card-header">Authentification</div>
+      <div class="card card-body">
+        <form #f="ngForm" (ngSubmit)="OnRegister(f.value)">
+          <div class="form-group">
+            <label>Taskname</label>
+            <input type="text" name="taskName" ngModel="" class="form-control" required="">
+          </div>
+          <tr>
+            <td><button class="btn btn-info" [disabled]="!f.valid">Enregistrer</button></td>
+          </tr>
+        </form>
+    </div>
+  </div>
+</div>
+</div>

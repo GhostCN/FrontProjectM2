@@ -1,0 +1,58 @@
+<p></p>
+<div class="container">
+  <div class="alert alert-danger" *ngIf="mode==1">
+    <strong>Bad credentials</strong>Login ou mot de passe incorrect
+  </div>
+  <div class="card card-primary">
+    <div class="card card-header"></div>
+    <div class="card card-body">
+      <form #f="ngForm" (ngSubmit)="onLogin(f.value)">
+        <div class="form-group">
+          <label>Matricule</label>
+          <input type="text" name="matricule" ngModel="" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Prenom</label>
+          <input type="text" name="prenom" ngModel="" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" name="nom" ngModel="" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>telephone</label>
+          <input type="text" name="telephone" ngModel="" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" name="email" ngModel="" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Poste</label>
+          <select class="form-control" required>
+            <option *ngFor="let p of postes" [value]="p">{{p.libelle}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Service</label>
+          <select class="form-control" required>
+            <option *ngFor="let s of services" [value]="s">{{s.libelle}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Role</label>
+          <select class="form-control" id="power" required>
+            <option *ngFor="let r of roles" [value]="r">{{r.libelle}}</option>
+          </select>
+        </div>
+        <tr>
+          <td><button class="btn btn-primary" type="submit">Login</button></td>
+          <td><button class="btn btn-info" (click)="onRegister()">New Register</button></td>
+        </tr>
+
+
+      </form>
+    </div>
+  </div>
+
+</div>
