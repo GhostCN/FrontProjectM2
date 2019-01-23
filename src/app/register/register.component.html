@@ -1,12 +1,15 @@
 <p></p>
 <div class="container">
   <div class="alert alert-danger" *ngIf="mode==1">
-    <strong>Bad credentials</strong>Login ou mot de passe incorrect
+    <strong>Insertion échouée</strong>
+  </div>
+  <div class="alert alert-info" *ngIf="mode==0">
+    <strong>Insertion reussie</strong>
   </div>
   <div class="card card-primary">
     <div class="card card-header"></div>
     <div class="card card-body">
-      <form #f="ngForm" (ngSubmit)="onLogin(f.value)">
+      <form #f="ngForm" (ngSubmit)="onRegister(f.value)">
         <div class="form-group">
           <label>Matricule</label>
           <input type="text" name="matricule" ngModel="" class="form-control">
@@ -28,26 +31,25 @@
           <input type="text" name="email" ngModel="" class="form-control">
         </div>
         <div class="form-group">
+          <label>Date de naissance</label>
+          <input type="date" name="date" ngModel="" class="form-control">
+        </div>
+        <div class="form-group">
           <label>Poste</label>
-          <select class="form-control" required>
-            <option *ngFor="let p of postes" [value]="p">{{p.libelle}}</option>
-          </select>
+          <ng-select [items]="postes" bindLabel="libelle" bindValue="id" name="poste" ngModel ="" >
+
+          </ng-select>
         </div>
         <div class="form-group">
           <label>Service</label>
-          <select class="form-control" required>
-            <option *ngFor="let s of services" [value]="s">{{s.libelle}}</option>
-          </select>
+          <ng-select [items]="services" ngModel="" bindValue="id" bindLabel="libelle" name="service"></ng-select>
         </div>
         <div class="form-group">
           <label>Role</label>
-          <select class="form-control" id="power" required>
-            <option *ngFor="let r of roles" [value]="r">{{r.libelle}}</option>
-          </select>
+         <ng-select [items]="roles" ngModel="" bindValue="id" bindLabel="libelle" name="role" [multiple]="true"></ng-select>
         </div>
         <tr>
-          <td><button class="btn btn-primary" type="submit">Login</button></td>
-          <td><button class="btn btn-info" (click)="onRegister()">New Register</button></td>
+          <td><button class="btn btn-primary" type="submit">onRegister</button></td>
         </tr>
 
 

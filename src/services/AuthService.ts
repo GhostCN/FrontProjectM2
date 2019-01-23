@@ -56,17 +56,25 @@ export class AuthService {
   }
 
   loadService(){
+    if(this.jwtToken==null) this.loadToken();
     return this.http.get(this.host+"/lservice",{headers:new HttpHeaders({'Authorization':this.jwtToken})});
   }
   loadPoste(){
+    if(this.jwtToken==null) this.loadToken();
     return this.http.get(this.host+"/lposte",{headers:new HttpHeaders({'Authorization':this.jwtToken})});
   }
   loadRole(){
+    if(this.jwtToken==null) this.loadToken();
     return this.http.get(this.host+"/lrole",{headers:new HttpHeaders({'Authorization':this.jwtToken})});
   }
 
   register(user){
+    if(this.jwtToken==null) this.loadToken();
     return this.http.post(this.host+"/register",user,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+  }
+
+  update(data){
+    return this.http.put(this.host+"/update",data,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
   }
 
 }

@@ -10,12 +10,16 @@ import {RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from '../services/AuthService';
+import {NgSelectModule} from "@ng-select/ng-select";
+import { UpdatePasswordComponent } from './update-password/update-password.component';
+
 
 const appRoutes:Routes=[
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
   {path:"addTask",component:NewTaskComponent},
   {path:"register",component:RegisterComponent},
+  {path:"update",component:UpdatePasswordComponent},
   {path:"",redirectTo:"login",pathMatch:"full"}
   ];
 @NgModule({
@@ -24,10 +28,11 @@ const appRoutes:Routes=[
     LoginComponent,
     RegisterComponent,
     TasksComponent,
-    NewTaskComponent
+    NewTaskComponent,
+    UpdatePasswordComponent,
   ],
   imports: [
-    BrowserModule,RouterModule.forRoot(appRoutes),FormsModule,HttpClientModule
+    BrowserModule,RouterModule.forRoot(appRoutes),FormsModule,HttpClientModule,NgSelectModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

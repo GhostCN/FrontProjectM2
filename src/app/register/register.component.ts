@@ -15,18 +15,46 @@ export class RegisterComponent implements OnInit {
   postes:any;
   services:any;
   roles:any;
-
-  constructor(public http:AuthService) {
+    mode:number
+  constructor(public serv:AuthService) {
 
   }
 
   ngOnInit() {
-    this.http.loadPoste().subscribe(data=>{
+    /**
+     * Load poste
+     */
+    this.serv.loadPoste().subscribe(data=>{
       this.postes=data
       console.log("data",this.postes)
     },error1 => {
       console.log(error1)
     })
+
+    /**
+     * Load service
+     */
+    this.serv.loadService().subscribe(data=>{
+      this.services=data
+      console.log("data",this.services)
+    },error1 => {
+      console.log(error1)
+    })
+    /**
+     * Load role
+     */
+    this.serv.loadRole().subscribe(data=>{
+      this.roles=data
+      console.log("data",this.roles)
+    },error1 => {
+      console.log(error1)
+    })
+  }
+
+  onRegister(formdata){
+      console.log("form data",formdata)
+    this.serv.register(formdata).subscribe(data=>{this.mode=0},error1 =>{this.mode=1} )
+
   }
 
 }
