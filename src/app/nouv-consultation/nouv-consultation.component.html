@@ -1,0 +1,77 @@
+<p></p>
+<div class="container">
+  <div class="alert alert-danger" *ngIf="mode==0">
+    <strong>Insertion consulation échouée</strong>
+  </div>
+  <div class="alert alert-info" *ngIf="mode==1">
+    <strong>Insertion consultation reussie</strong>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="ok==1">
+    <strong>Patient existant</strong>
+  </div>
+  <!--<div class="card card-primary">
+
+    <div class="card card-body">-->
+      <form [formGroup]="f" (ngSubmit)="onSave()">
+        <fieldset>
+          <legend>Patient</legend>
+        <div class="form-group">
+          <label>Numero dossier</label>
+          <input #num type="text" formControlName="numerodossier" (mouseout)="search(num)" name="numerodossier" ngModel="" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.numerodossier.errors }">
+
+          <div *ngIf="submitted && f.controls.numerodossier.errors" class="invalid-feedback">
+            <div *ngIf="f.controls.numerodossier.errors.required">Numero is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Nom Complet</label>
+          <input type="text" name="nom" [value]="model.nom" ngModel="" formControlName="nom"  class="form-control">
+
+        </div>
+        <div class="form-group">
+          <label>Telephone</label>
+          <input type="text" [value]="model.tel" name="tel" formControlName="tel"  ngModel="" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Date de Naissance</label>
+          <input type="date" name="datenaiss" [value]="model.datenaiss" ngModel="" formControlName="datenaiss" class="form-control">
+        </div>
+
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Dossier</legend>
+          <div class="form-group">
+            <label>Service</label>
+            <select class="form-control" interface="popover" [value]="model.service" name="service" formControlName="service" ngModel="">
+              <option *ngFor="let s of services" value={{s.id}}>{{s.libelle}}</option>
+            </select>
+            <!--          &lt;!&ndash;<ng-select [items]="services" formControlName="service" ngModel="" bindValue="id" bindLabel="libelle" name="service"></n&ndash;&gt;g-select>-->
+          </div>
+        <div class="form-group">
+          <label>Prescription</label>
+<!--          <input type="number" name="patient" formControlName="patient" [value]="model.id" ngModel=""  class="form-control" hidden>-->
+          <textarea name="prescription" formControlName="prescription" ngModel="" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.controls.prescription.errors }"></textarea>
+          <div *ngIf="submitted && f.controls.prescription.errors" class="invalid-feedback">
+            <div *ngIf="f.controls.prescription.errors.required">Prescription is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Commentaire</label>
+          <textarea type="text" name="commentaire" formControlName="commentaire" ngModel="" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.controls.commentaire.errors }"></textarea>
+          <div *ngIf="submitted && f.controls.commentaire.errors" class="invalid-feedback">
+            <div *ngIf="f.controls.commentaire.errors.required">Commentaire is required</div>
+          </div>
+        </div>
+
+        <tr>
+          <td><button class="btn btn-primary" type="submit">Enregistrer</button></td>
+        </tr>
+        </fieldset>
+      </form>
+  <!--  </div>
+  </div>-->
+
+</div>

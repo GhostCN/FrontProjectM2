@@ -1,0 +1,39 @@
+<p></p>
+<div class="container">
+  <div class="alert alert-danger" *ngIf="mode==1">
+    <strong>Insertion échouée</strong>
+  </div>
+  <div class="alert alert-info" *ngIf="mode==0">
+    <strong>Insertion reussie</strong>
+  </div>
+  <div class="card card-primary">
+
+    <div class="card card-body">
+      <form #f="ngForm" (ngSubmit)="onSave(f.value)">
+        <div class="form-group">
+          <label>Numero dossier</label>
+          <input type="text" name="numerodossier" ngModel="" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Nom Complet</label>
+          <input type="text" name="nom" ngModel="" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Telephone</label>
+          <input type="text" name="tel" ngModel="" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Date de Naissance</label>
+          <input type="date" name="datenaiss" ngModel="" class="form-control">
+        </div>
+
+        <tr>
+          <td><button class="btn btn-primary" type="submit">Enregistrer</button></td>
+          <td><button class="btn btn-info" (click)="Update(f.value)">Update</button></td>
+        </tr>
+
+      </form>
+    </div>
+  </div>
+
+</div>

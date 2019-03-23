@@ -1,0 +1,64 @@
+<!--
+<p>
+
+</p>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Listes des consultations</h3>
+  </div>
+  &lt;!&ndash; /.card-header &ndash;&gt;
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead>
+  <tr>
+    <th scope="col">Patient</th>
+    <th scope="col">Commentaire</th>
+    <th scope="col">Date</th>
+    <th scope="col">Prescription</th>
+    <th scope="col">Service</th>
+    <th scope="col">Medecin</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let c of consultation">
+    <td>{{c.patient.nom}}</td>
+    <td>{{c.commentaire}}</td>
+    <td>{{c.date | date :"dd/MM/yyyy"}}</td>
+    <td>{{c.prescription}}</td>
+    <td>{{c.service.libelle}}</td>
+    <td>{{c.utilisateur.prenom}}</td>
+
+  </tr>
+
+  </tbody>
+</table>
+  </div>
+</div>
+
+-->
+<p></p><p></p><p></p>
+<table datatable class="row-border hover" [dtOptions]="dtOptions">
+  <thead>
+  <tr>
+    <th>Patient</th>
+    <th >Commentaire</th>
+    <th >Date</th>
+    <th >Prescription</th>
+    <th >Service</th>
+    <th >Medecin</th>
+    <th>Medecin</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let c of consultation">
+    <td>{{c.patient.nom}}</td>
+    <td>{{c.commentaire}}</td>
+    <td>{{c.date | date :"dd/MM/yyyy"}}</td>
+    <td>{{c.prescription}}</td>
+    <td>{{c.service.libelle}}</td>
+    <td>{{c.utilisateur.prenom}}</td>
+    <td scope="col"><a (click)="onEdit(c.id)" style="color: red" class="clickable">Modifier</a></td>  <td scope="col"><a (click)="onPrint(c.id)" class="clickable" style="color: green">Imprimer</a></td>
+  </tr>
+
+
+  </tbody>
+</table>

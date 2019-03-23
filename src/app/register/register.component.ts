@@ -3,6 +3,9 @@ import {Poste} from '../models/Poste';
 import {Role} from '../models/Role';
 import {Service} from '../models/service';
 import {AuthService} from '../../services/AuthService';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Observable} from "rxjs/internal/Observable";
+
 
 
 @Component({
@@ -14,13 +17,29 @@ export class RegisterComponent implements OnInit {
   p:Poste; r:Role ; s:Service;
   postes:any;
   services:any;
+  submitted: boolean = false;
   roles:any;
     mode:number
-  constructor(public serv:AuthService) {
+  loginForm: FormGroup;
+  constructor(public serv:AuthService,public formBuilder: FormBuilder) {
 
   }
 
+
   ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      matricule: ['', Validators.required],
+      prenom: ['', Validators.required],
+      nom: ['', Validators.required],
+      telephone: ['', Validators.required],
+      email: ['', Validators.required],
+      poste: ['', Validators.required],
+      date: ['', Validators.required],
+      service: ['', Validators.required],
+      role: ['', Validators.required],
+    });
+
+
     /**
      * Load poste
      */
@@ -46,14 +65,25 @@ export class RegisterComponent implements OnInit {
     this.serv.loadRole().subscribe(data=>{
       this.roles=data
       console.log("data",this.roles)
-    },error1 => {
-      console.log(error1)
+    },error1  => {
+      console.log("Erreur",error1)
     })
   }
 
-  onRegister(formdata){
-      console.log("form data",formdata)
-    this.serv.register(formdata).subscribe(data=>{this.mode=0},error1 =>{this.mode=1} )
+
+  onRegister(){
+console.log("formdata",this.loginForm)
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.serv.register(this.loginForm.value).subscribe(data=>{this.mode=0},
+        err =>{
+      this.mode=1
+      console.log("erreur",err
+      )
+
+    } )
 
   }
 

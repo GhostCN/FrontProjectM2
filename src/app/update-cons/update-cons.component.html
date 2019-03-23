@@ -1,0 +1,54 @@
+<p></p>
+<div class="container">
+  <div class="alert alert-danger" *ngIf="mode==1">
+    <strong>Update échouée</strong>
+  </div>
+  <div class="alert alert-info" *ngIf="mode==0">
+    <strong>Update reussie</strong>
+  </div>
+  <div class="card card-primary">
+
+    <div class="card card-body">
+      <form [formGroup]="f" (ngSubmit)="onUpdate()">
+       <!-- <div class="form-group">
+          <label>Patient</label>
+          <ng-select [items]="patients"  formControlName="patient" bindLabel="nom" bindValue="id" name="patient" ngModel =""  [ngClass]="{ 'is-invalid': submitted && f.controls.patient.errors }">
+          </ng-select>
+          <div *ngIf="submitted && f.controls.patient.errors" class="invalid-feedback">
+            <div *ngIf="f.controls.patient.errors.required">Patient is required</div>
+          </div>
+        </div>-->
+
+        <div class="form-group">
+          <label>Prescription</label>
+          <textarea name="prescription" [(ngModel)]="model.prescription" formControlName="prescription" ngModel="" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.controls.prescription.errors }"></textarea>
+          <div *ngIf="submitted && f.controls.prescription.errors" class="invalid-feedback">
+            <div *ngIf="f.controls.prescription.errors.required">Prescription is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Commentaire</label>
+          <textarea type="text" name="commentaire" [(ngModel)]="model.commentaire" formControlName="commentaire" ngModel="" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.controls.commentaire.errors }"></textarea>
+          <div *ngIf="submitted && f.controls.commentaire.errors" class="invalid-feedback">
+            <div *ngIf="f.controls.commentaire.errors.required">Commentaire is required</div>
+          </div>
+        </div>
+
+      <!--  <div class="form-group">
+          <label>Service</label>
+          <ng-select [items]="services"  ngModel="" formControlName="service" [bindValue]="services.id" bindLabel="libelle" name="service" [ngClass]="{ 'is-invalid': submitted && f.controls.service.errors }"></ng-select>
+          <div *ngIf="submitted && f.controls.service.errors" class="invalid-feedback">
+            <div *ngIf="f.controls.service.errors.required">Service is required</div>
+          </div>
+        </div>-->
+
+
+        <tr>
+          <td><button class="btn btn-primary" type="submit">Enregistrer</button></td>
+        </tr>
+
+      </form>
+    </div>
+  </div>
+
+</div>

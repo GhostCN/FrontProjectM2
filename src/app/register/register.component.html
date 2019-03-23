@@ -6,50 +6,79 @@
   <div class="alert alert-info" *ngIf="mode==0">
     <strong>Insertion reussie</strong>
   </div>
-  <div class="card card-primary">
-    <div class="card card-header"></div>
-    <div class="card card-body">
-      <form #f="ngForm" (ngSubmit)="onRegister(f.value)">
+  <div  class="row">
+
+    <div class="col-md-12 col-md-offset-2">
+      <form [formGroup]="loginForm" (ngSubmit)="onRegister()">
         <div class="form-group">
           <label>Matricule</label>
-          <input type="text" name="matricule" ngModel="" class="form-control">
+          <input type="text" formControlName="matricule" name="matricule" ngModel="" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.matricule.errors }">
+
+          <div *ngIf="submitted && loginForm.controls.matricule.errors" class="invalid-feedback">
+            <div *ngIf="loginForm.controls.matricule.errors.required">Matricule  is required</div>
+          </div>
         </div>
         <div class="form-group">
           <label>Prenom</label>
-          <input type="text" name="prenom" ngModel="" class="form-control">
+          <input type="text" formControlName="prenom" name="prenom" ngModel="" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.prenom.errors }">
+          <div *ngIf="submitted && loginForm.controls.prenom.errors" class="invalid-feedback">
+            <div *ngIf="loginForm.controls.prenom.errors.required">Prenom is required</div>
+          </div>
         </div>
         <div class="form-group">
           <label>Nom</label>
-          <input type="text" name="nom" ngModel="" class="form-control">
+          <input type="text" name="nom" formControlName="nom" ngModel="" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.nom.errors }">
+          <div *ngIf="submitted && loginForm.controls.nom.errors" class="invalid-feedback">
+            <div *ngIf="loginForm.controls.nom.errors.required">Nom  is required</div>
+          </div>
         </div>
         <div class="form-group">
           <label>telephone</label>
-          <input type="text" name="telephone" ngModel="" class="form-control">
+          <input type="text" name="telephone" formControlName="telephone" ngModel="" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.telephone.errors }">
+          <div *ngIf="submitted && loginForm.controls.telephone.errors" class="invalid-feedback">
+            <div *ngIf="loginForm.controls.telephone.errors.required">Telephone is required</div>
+          </div>
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="text" name="email" ngModel="" class="form-control">
+          <input type="email"  formControlName="email" ngModel="" name="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.email.errors }">
+          <div *ngIf="submitted && loginForm.controls.email.errors" class="invalid-feedback">
+            <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>
+          </div>
         </div>
         <div class="form-group">
           <label>Date de naissance</label>
-          <input type="date" name="date" ngModel="" class="form-control">
+          <input type="date" name="date" ngModel="" formControlName="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.date.errors }">
+          <div *ngIf="submitted && loginForm.controls.date.errors" class="invalid-feedback">
+            <div *ngIf="loginForm.controls.date.errors.required">Date is required</div>
+          </div>
         </div>
         <div class="form-group">
           <label>Poste</label>
-          <ng-select [items]="postes" bindLabel="libelle" bindValue="id" name="poste" ngModel ="" >
+          <ng-select [items]="postes" bindLabel="libelle" bindValue="id" name="poste" ngModel ="" formControlName="poste" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.poste.errors }">
 
+            <div *ngIf="submitted && loginForm.controls.poste.errors" class="invalid-feedback">
+              <div *ngIf="loginForm.controls.poste.errors.required">Poste is required</div>
+            </div>
           </ng-select>
         </div>
         <div class="form-group">
           <label>Service</label>
-          <ng-select [items]="services" ngModel="" bindValue="id" bindLabel="libelle" name="service"></ng-select>
+          <ng-select [items]="services" ngModel="" bindValue="id" formControlName="service" bindLabel="libelle" name="service" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.service.errors }"></ng-select>
+          <div *ngIf="submitted && loginForm.controls.service.errors" class="invalid-feedback">
+            <div *ngIf="loginForm.controls.service.errors.required">Service is required</div>
+          </div>
         </div>
         <div class="form-group">
           <label>Role</label>
-         <ng-select [items]="roles" ngModel="" bindValue="id" bindLabel="libelle" name="role" [multiple]="true"></ng-select>
+         <ng-select [items]="roles" ngModel="" bindValue="id" formControlName="role" bindLabel="libelle" name="role" [multiple]="true" [ngClass]="{ 'is-invalid': submitted && loginForm.controls.role.errors }">
+           <div *ngIf="submitted && loginForm.controls.role.errors" class="invalid-feedback">
+             <div *ngIf="loginForm.controls.role.errors.required">Role is required</div>
+           </div>
+         </ng-select>
         </div>
         <tr>
-          <td><button class="btn btn-primary" type="submit">onRegister</button></td>
+          <td><button class="btn btn-primary" type="submit">Enregistrer</button></td>
         </tr>
 
 

@@ -1,11 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {JwtHelper} from "angular2-jwt";
 
 @Injectable()
 export class AuthService {
   private jwtToken:string=null;
   public infos;
+  public username:string
+  public roles:Array<string>
+  r:any=null;
   private host:string="http://localhost:8080";
   constructor(private http:HttpClient){
 
@@ -19,9 +23,11 @@ export class AuthService {
     localStorage.setItem('token',jwt);
     let jwtHelper=new JwtHelperService();
     this.infos=jwtHelper.decodeToken(jwt);
-
-
+    this.username=this.infos.obj;
+    this.roles=this.infos.roles;
   }
+
+
 
   loadToken(){
     this.jwtToken=localStorage.getItem('token');
@@ -35,15 +41,23 @@ export class AuthService {
 
   isAdmin()
   {
-    for(let role of this.infos.roles)
-    {
-      if(role.authority=="ADMIN")
-      {
-        return true;
-      }
-      return false;
 
+    for(this.r of this.infos.roles){
+
+     if(this.r.authority=="ADMIN"){
+       return 1
+     }
     }
+
+    return 0
+  }
+  isMedecin()
+  {
+    return this.roles.indexOf('MEDECIN')>=0;
+  }
+  isSecretaire()
+  {
+    return this.roles.indexOf('SECRETAIRE')>=0;
   }
 
   logout(){
@@ -74,7 +88,8 @@ export class AuthService {
   }
 
   update(data){
-    return this.http.put(this.host+"/update",data,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
+    if(this.jwtToken==null) this.loadToken();
+    return this.http.post(this.host+"/update",data,{headers:new HttpHeaders({'Authorization':this.jwtToken})});
   }
 
 }

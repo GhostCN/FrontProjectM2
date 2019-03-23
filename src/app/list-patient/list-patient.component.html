@@ -1,0 +1,23 @@
+<p>
+
+</p>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Numero dossier</th>
+    <th scope="col">Nom complet</th>
+    <th scope="col">Date de naissance</th>
+    <th scope="col">Telephone</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of patients">
+    <td>{{p.numerodossier}}</td>
+    <td>{{p.nom}}</td>
+    <td>{{p.datenaiss}}</td>
+    <td>{{p.tel}}</td>
+
+  </tr>
+
+  </tbody>
+</table>

@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     this.service.login(dataForm).subscribe(resp=>{
       let jwt=resp.headers.get("authorization");
       this.service.saveToken(jwt);
-     this.router.navigateByUrl("/register")
+     this.router.navigate(["home"])
     },error =>{
       this.mode=1;
     } )

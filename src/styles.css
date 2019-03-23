@@ -1,2 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@ng-select/ng-select/themes/default.theme.css";
+
+
+.clickable{
+  cursor: pointer;
+}
+
+.spacer{
+  margin-top: 30px;
+}
+
+.btn{
+  margin-right: 2px;
+  margin-left: 2px;
+
+}
+
+
+
+
+/*@import "assets/plugins/font-awesome/css/font-awesome.css";*/
+/*@import "assets/plugins/font-awesome/css/font-awesomde.css";*/
+/*@import "assets/dist/css/adminlte.min.css";*/
+/*@import "assets/plugins/iCheck/flat/blue.css";*/
+/*@import "assets/plugins/morris/morris.css";*/
+/*@import "assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css";*/
+/*@import "assets/plugins/datepicker/datepicker3.css";*/
+/*@import "assets/plugins/daterangepicker/daterangepicker-bs3.css";*/
+/*@import "assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css";*/
+
+
+
